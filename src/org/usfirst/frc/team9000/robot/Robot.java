@@ -1,10 +1,12 @@
 
 package org.usfirst.frc.team9000.robot;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,7 +27,10 @@ public class Robot extends IterativeRobot {
 	RobotDrive robotDrive = new RobotDrive(0,1);
 	Joystick driver = new Joystick(1);
 	Joystick operator = new Joystick(2);
-	Talon Claw = new Talon(2);
+	Talon Claw = new Talon(3);
+	Talon Elevator = new Talon(2);
+	Encoder leftWheels = new Encoder(0,1);
+	Encoder rightWheels = new Encoder(2,3);
 	
     public void robotInit() {
 
@@ -49,6 +54,16 @@ public class Robot extends IterativeRobot {
     	{
     		Claw.set(.45);
     	} else Claw.set(0);
+    	double leftDist = leftWheels.getDistance();
+    	SmartDashboard.putNumber("Left Encoder", leftWheels.getDistance());
+    	SmartDashboard.putNumber("Right Encoder", rightWheels.getDistance());
+    	
+    	/*double axisinput;
+    	axisinput = operator.getRawAxis(1);
+    	Elevator.set(axisinput);
+    	*/
+    	Elevator.set(operator.getRawAxis(1));
+    	
     }
     
     /**
