@@ -2,6 +2,8 @@
 package org.usfirst.frc.team9000.robot;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Joystick;
@@ -20,6 +22,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class Robot extends IterativeRobot {
+	
+	double Kp = 0.05;
+	
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -31,6 +36,7 @@ public class Robot extends IterativeRobot {
 	Talon Elevator = new Talon(2);
 	Encoder leftWheels = new Encoder(0,1);
 	Encoder rightWheels = new Encoder(2,3);
+	Gyro gyro = new Gyro(0);
 	
     public void robotInit() {
 
@@ -40,6 +46,13 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+        gyro.reset();
+        while (isAutonomous()) {
+            double angle = gyro.getAngle(); // get current heading
+            robotDrive.drive(-0.2, -angle*Kp); // drive towards heading 0
+            Timer.delay(0.004);
+        }
+        robotDrive.drive(0.5, 0.5);
 
     }
 
