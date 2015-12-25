@@ -11,10 +11,12 @@
 
 package org.usfirst.frc9000.FRC2015Java.commands;
 
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc9000.FRC2015Java.MotionControlHelper;
 import org.usfirst.frc9000.FRC2015Java.Robot;
 import org.usfirst.frc9000.FRC2015Java.RobotMap;
 
@@ -23,6 +25,8 @@ import org.usfirst.frc9000.FRC2015Java.RobotMap;
 */
 public class  DriveForward extends Command {
 	double Kp = 0.05;// was 0.05 whith a delay of 0.004
+    MotionControlHelper motionControlHelper = null  ;
+//TODO    private final PIDController drivePowerPID;
 
    public DriveForward() {
        // Use requires() here to declare subsystem dependencies
@@ -40,6 +44,14 @@ public class  DriveForward extends Command {
    	RobotMap.driveGyro.reset();
     RobotMap.driveLeftWheelsEncoder.reset();
     RobotMap.driveRightWheelsEncoder.reset();
+    motionControlHelper = new MotionControlHelper(500, 50, 100, 0)  ;
+    //These values will need to be tuned for your robot.
+    final double Kp = 0.3;
+    final double Ki = 0.0;
+    final double Kd = 0.0;
+//TODO:    drivePowerPID = new PIDController(Kp, Ki, Kd, RobotMap.driveLeftWheelEncoder, RobotMap.driveLeftMotors);
+//TODO:    PIDController PID =  new PIDController(Kd, Kd, Kd, Kd, starttime, null) ;
+//TODO:   start time, 
    }
 
    // Called repeatedly when this Command is scheduled to run
@@ -48,11 +60,22 @@ public class  DriveForward extends Command {
        double motorPower = 0.2;
        SmartDashboard.putNumber("angle", angle);
        
+       double targetSpeed = motionControlHelper.getTargetSpeed(RobotMap.driveLeftWheelsEncoder.getDistance());
+//       RobotMap.driveLeftWheelsEncoder.getRate().
+//ToDo       drivePowerPID = new PIDController(Kp, Ki, Kd, leftEncoder, left);
+
        RobotMap.driveRobotDrive.drive(motorPower, -angle*Kp); // drive towards heading 0
        //Timer.delay(0.004);
        SmartDashboard.putNumber("Left",RobotMap.driveLeftWheelsEncoder.getDistance());
        SmartDashboard.putNumber("Right",RobotMap.driveRightWheelsEncoder.getDistance());
+       SmartDashboard.putNumber("Left Rate",RobotMap.driveLeftWheelsEncoder.getRate());
+       SmartDashboard.putNumber("Left Target Rate",targetSpeed);
+       SmartDashboard.putNumber("Time",this.timeSinceInitialized());
+       System.out.println("Time="+this.timeSinceInitialized()
+                         +" encoderDist="+RobotMap.driveLeftWheelsEncoder.getDistance()
+                         +" Left Target Rate="+targetSpeed);
        
+            
 
    }
 
