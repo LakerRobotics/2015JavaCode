@@ -4,6 +4,7 @@ package org.usfirst.frc.team9000.robot;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Joystick;
@@ -23,8 +24,10 @@ import edu.wpi.first.wpilibj.I2C.Port;
 /*
  *
  */
-public class Robot extends IterativeRobot {
+public class Robot extends IterativeRobot{
 	
+	public static Subsystem exampleSubsystem;
+
 	double Kp = 0.05;
 
 	RobotDrive robotDrive = new RobotDrive(0,1);
