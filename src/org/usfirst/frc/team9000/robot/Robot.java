@@ -30,8 +30,8 @@ public class Robot extends IterativeRobot {
 	RobotDrive robotDrive = new RobotDrive(0,1);
 	Joystick joyStickDriver   = new Joystick(1);
 	Joystick joyStickOperator = new Joystick(2);
-	Talon Claw = new Talon(3);
-	Talon Elevator = new Talon(2);
+	Talon motorClaw = new Talon(3);
+	Talon motorElevator = new Talon(2);
 	Encoder leftWheels = new Encoder(0,1);
 	Encoder rightWheels = new Encoder(2,3);
 	Gyro gyro = new Gyro(0); 
@@ -103,10 +103,10 @@ public class Robot extends IterativeRobot {
     	
     	// End Effector, Open and Close the Claw(End Effector)
     	if (joyStickDriver.getRawButton(5))	{
-    		Claw.set(.45);
+    		motorClaw.set(.45);
     	}
     	else{
-    		Claw.set(0);
+    		motorClaw.set(0);
     	};
     	
     	
@@ -115,7 +115,7 @@ public class Robot extends IterativeRobot {
     	axisinput = operator.getRawAxis(1);
     	Elevator.set(axisinput);
     	*/
-    	Elevator.set(joyStickOperator.getRawAxis(1));
+    	motorElevator.set(joyStickOperator.getRawAxis(1));
     	
     }
     
