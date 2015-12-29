@@ -1,21 +1,24 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Motor Output" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="1020" y="337"/>
+	</widget>
 	<widget field="Gryro Target Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
-		<location x="206" y="352"/>
+		<location x="194" y="368"/>
 	</widget>
 	<widget field="Gyro Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
-		<location x="201" y="56"/>
+		<location x="194" y="51"/>
 	</widget>
 	<widget field="angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
-		<location x="614" y="45"/>
+		<location x="610" y="71"/>
 	</widget>
-	<widget field="targetSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
-		<location x="1016" y="311"/>
+	<widget field="rotateRobotPIDOutput" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="259"/>
 	</widget>
 	<widget field="gapDistanceToUse" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
 		<location x="1013" y="12"/>
 		<width>397</width>
-		<height>295</height>
+		<height>237</height>
 	</widget>
 	<widget field="Time" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
 		<location x="611" y="316"/>
@@ -55,145 +58,5 @@
 	</widget>
 </dashboard>
 <live-window>
-	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="DigitalInput[2]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="16"/>
-			<height>20</height>
-			<width>104</width>
-		</widget>
-		<widget field="AnalogInput[0]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
-			<location x="6" y="36"/>
-			<height>20</height>
-			<width>104</width>
-		</widget>
-		<widget field="DigitalInput[3]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="56"/>
-			<height>20</height>
-			<width>104</width>
-		</widget>
-		<widget field="DigitalInput[7]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="76"/>
-			<height>20</height>
-			<width>104</width>
-		</widget>
-		<widget field="DigitalInput[5]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="96"/>
-			<height>20</height>
-			<width>104</width>
-		</widget>
-		<widget field="DigitalInput[1]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="116"/>
-			<height>20</height>
-			<width>104</width>
-		</widget>
-		<widget field="DigitalInput[0]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="136"/>
-			<height>20</height>
-			<width>104</width>
-		</widget>
-		<widget field="DigitalInput[6]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="156"/>
-			<height>20</height>
-			<width>104</width>
-		</widget>
-		<widget field="DigitalInput[4]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="176"/>
-			<height>20</height>
-			<width>104</width>
-		</widget>
-		<location x="0" y="0"/>
-		<width>116</width>
-		<height>203</height>
-	</widget>
-	<widget field="Lights" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="Spike" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.RelayController">
-			<location x="6" y="16"/>
-			<height>20</height>
-			<width>97</width>
-		</widget>
-		<location x="0" y="348"/>
-		<width>109</width>
-		<height>43</height>
-	</widget>
-	<widget field="Drive" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="RobotSpeed" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
-			<location x="6" y="16"/>
-			<height>46</height>
-			<width>293</width>
-		</widget>
-		<widget field="LeftWheelsEncoder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
-			<location x="6" y="62"/>
-			<height>98</height>
-			<width>293</width>
-		</widget>
-		<widget field="PIDRobotDrive" type="Table" class="edu.wpi.first.smartdashboard.gui.elements.PIDEditor">
-			<location x="6" y="160"/>
-			<height>136</height>
-			<width>293</width>
-		</widget>
-		<widget field="Gyro" type="Table" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
-			<location x="6" y="296"/>
-			<height>150</height>
-			<width>293</width>
-		</widget>
-		<widget field="RightMotors" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
-			<location x="6" y="446"/>
-			<height>46</height>
-			<width>293</width>
-		</widget>
-		<widget field="RightWheelsEncoder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
-			<location x="6" y="492"/>
-			<height>98</height>
-			<width>293</width>
-		</widget>
-		<widget field="LeftMotors" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
-			<location x="6" y="590"/>
-			<height>46</height>
-			<width>293</width>
-		</widget>
-		<location x="0" y="104"/>
-		<width>305</width>
-		<height>643</height>
-	</widget>
-	<widget field="Claw" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="PIDSubsystem Controller" type="Table" class="edu.wpi.first.smartdashboard.gui.elements.PIDEditor">
-			<location x="6" y="16"/>
-			<height>136</height>
-			<width>293</width>
-		</widget>
-		<widget field="ClawMotor" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
-			<location x="6" y="152"/>
-			<height>46</height>
-			<width>293</width>
-		</widget>
-		<widget field="ClawEncoder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
-			<location x="6" y="198"/>
-			<height>98</height>
-			<width>293</width>
-		</widget>
-		<location x="0" y="128"/>
-		<width>305</width>
-		<height>303</height>
-	</widget>
-	<widget field="Elevator" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="PIDSubsystem Controller" type="Table" class="edu.wpi.first.smartdashboard.gui.elements.PIDEditor">
-			<location x="6" y="16"/>
-			<height>136</height>
-			<width>293</width>
-		</widget>
-		<widget field="ElevatorMotor" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
-			<location x="6" y="152"/>
-			<height>46</height>
-			<width>293</width>
-		</widget>
-		<widget field="ElevatorEncoder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
-			<location x="6" y="198"/>
-			<height>98</height>
-			<width>293</width>
-		</widget>
-		<location x="0" y="44"/>
-		<width>305</width>
-		<height>303</height>
-	</widget>
 </live-window>
 </xml>

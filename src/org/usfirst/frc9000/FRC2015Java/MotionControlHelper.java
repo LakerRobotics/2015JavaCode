@@ -39,7 +39,7 @@ public class MotionControlHelper {
        public double getTargetSpeed(double currentMeasuredDistance){
        double targetSpeed = 0.0d;       
 
-       double percentDeadZoneOverride = 2;
+       double percentDeadZoneOverride = 10;
        if( Math.abs(currentMeasuredDistance - m_initialMeasuredDistance) < m_rampUpRampDownDistance*(percentDeadZoneOverride/100)){
     	   targetSpeed = m_runningSpeed *(percentDeadZoneOverride/100) ; //just to make sure it does not stay stuck at the start 
        }
@@ -53,7 +53,9 @@ public class MotionControlHelper {
     		   gapDistanceToUse = -distanceFromEnd; // need to still move in the right direction
     	   }
     	   else{
-    		   gapDistanceToUse = distanceFromStart; 
+    		   gapDistanceToUse = Math.abs(distanceFromStart);
+    		   double direction = -distanceFromEnd/Math.abs(distanceFromEnd);//just get the sign
+    		   gapDistanceToUse = gapDistanceToUse * direction;
     	   }
     	   SmartDashboard.putNumber("gapDistanceToUse",gapDistanceToUse);
     	   if(Math.abs(gapDistanceToUse) < m_rampUpRampDownDistance)

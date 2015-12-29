@@ -43,18 +43,19 @@ public class  Turn90Degrees extends Command {
    protected void initialize() {
    	RobotMap.driveGyro.reset();
    	
-    double distance = -90; //degrees
+    double distance = -180; //degrees
     double ramp = 30; //degrees
-    double speed = -40; //degrees/sec
+    double speed = -20; //degrees/sec
     double start = 0; //degrees
     motionControl = new MotionControlHelper(distance, ramp, speed, start);
     
-    final double Kp = 0.3;
+    final double Kp = 5.0;
     final double Ki = 0.0;
     final double Kd = 0.0;
     
     MotionControlPIDController mcPID = new MotionControlPIDController(Kp,Ki,Kd,
     		RobotMap.driveGyro, new rotateRobotPIDOutput(), motionControl );
+    mcPID.setOutputRange(-.60, .60);
     mcPID.enable();
    }
 

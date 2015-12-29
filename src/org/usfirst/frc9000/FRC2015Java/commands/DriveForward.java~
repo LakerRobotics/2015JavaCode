@@ -48,10 +48,17 @@ public class  DriveForward extends Command {
    	RobotMap.driveGyro.reset();
     RobotMap.driveLeftWheelsEncoder.reset();
     RobotMap.driveRightWheelsEncoder.reset();
+    double distance = 24; //inches
+    double speed = 7; //in/sec
+    double ramp = 1; //inches
+    double start = 0; //inches
+    motionControlHelper = new MotionControlHelper(distance, ramp, speed, start);
+    
     //These values will need to be tuned for your robot.
     final double Kp = 0.3;
     final double Ki = 0.0;
     final double Kd = 0.0;
+    
 //TODO:    drivePowerPID = new PIDController(Kp, Ki, Kd, RobotMap.driveLeftWheelEncoder, RobotMap.driveLeftMotors);
 //TODO:    PIDController PID =  new PIDController(Kd, Kd, Kd, Kd, starttime, null) ;
 //TODO:   start time, 
