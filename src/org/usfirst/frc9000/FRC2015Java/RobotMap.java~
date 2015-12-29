@@ -32,7 +32,7 @@ public class RobotMap {
     public static RobotDrive driveRobotDrive;
     public static SpeedController driveRobotSpeed;
     public static Encoder driveLeftWheelsEncoder;
-    public static PIDController drivePIDController1;
+    public static PIDController drivePIDRobotDrive;
     public static Encoder elevatorElevatorEncoder;
     public static SpeedController elevatorElevatorMotor;
     public static Encoder clawClawEncoder;
@@ -71,10 +71,10 @@ public class RobotMap {
         LiveWindow.addSensor("Drive", "LeftWheelsEncoder", driveLeftWheelsEncoder);
         driveLeftWheelsEncoder.setDistancePerPulse(1.0);
         driveLeftWheelsEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
-        drivePIDController1 = new PIDController(1.0, 0.0, 0.0, 0.0, driveLeftWheelsEncoder, driveRobotSpeed, 0.02);
-        LiveWindow.addActuator("Drive", "PID Controller 1", drivePIDController1);
-        drivePIDController1.setContinuous(false); drivePIDController1.setAbsoluteTolerance(0.2); 
-        drivePIDController1.setOutputRange(-1.0, 1.0);        
+        drivePIDRobotDrive = new PIDController(1.0, 0.0, 0.0, 0.0, driveLeftWheelsEncoder, driveRobotSpeed, 0.02);
+        LiveWindow.addActuator("Drive", "PIDRobotDrive", drivePIDRobotDrive);
+        drivePIDRobotDrive.setContinuous(false); drivePIDRobotDrive.setAbsoluteTolerance(0.2); 
+        drivePIDRobotDrive.setOutputRange(-1.0, 1.0);        
 
         elevatorElevatorEncoder = new Encoder(4, 5, false, EncodingType.k4X);
         LiveWindow.addSensor("Elevator", "ElevatorEncoder", elevatorElevatorEncoder);

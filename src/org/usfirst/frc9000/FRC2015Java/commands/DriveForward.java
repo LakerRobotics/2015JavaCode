@@ -27,7 +27,11 @@ public class  DriveForward extends Command {
 	double Kp = 0.05;// was 0.05 whith a delay of 0.004
     MotionControlHelper motionControlHelper = null  ;
 //TODO    private final PIDController drivePowerPID;
-
+    // Use these to get going:
+    // setSetpoint() -  Sets where the PID controller should move the system
+    //                  to
+    // enable() - Enables the PID controller.
+    
    public DriveForward() {
        // Use requires() here to declare subsystem dependencies
        // eg. requires(chassis);
@@ -44,11 +48,17 @@ public class  DriveForward extends Command {
    	RobotMap.driveGyro.reset();
     RobotMap.driveLeftWheelsEncoder.reset();
     RobotMap.driveRightWheelsEncoder.reset();
-    motionControlHelper = new MotionControlHelper(500, 50, 100, 0)  ;
+    double distance = 24; //inches
+    double speed = 7; //in/sec
+    double ramp = 1; //inches
+    double start = 0; //inches
+    motionControlHelper = new MotionControlHelper(distance, ramp, speed, start);
+    
     //These values will need to be tuned for your robot.
     final double Kp = 0.3;
     final double Ki = 0.0;
     final double Kd = 0.0;
+    
 //TODO:    drivePowerPID = new PIDController(Kp, Ki, Kd, RobotMap.driveLeftWheelEncoder, RobotMap.driveLeftMotors);
 //TODO:    PIDController PID =  new PIDController(Kd, Kd, Kd, Kd, starttime, null) ;
 //TODO:   start time, 
@@ -81,7 +91,7 @@ public class  DriveForward extends Command {
 
    // Make this return true when this Command no longer needs to run execute()
    protected boolean isFinished() {
-	   if(RobotMap.driveLeftWheelsEncoder.getDistance()>500) {
+	   if(RobotMap.driveLeftWheelsEncoder.getDistance()>24) {
 		   return true;
 	   } 
 	   else {

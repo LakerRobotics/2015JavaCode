@@ -14,8 +14,11 @@ package org.usfirst.frc9000.FRC2015Java.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc9000.FRC2015Java.MotionControlHelper;
+import org.usfirst.frc9000.FRC2015Java.MotionControlPIDController;
 import org.usfirst.frc9000.FRC2015Java.Robot;
 import org.usfirst.frc9000.FRC2015Java.RobotMap;
+import org.usfirst.frc9000.FRC2015Java.rotateRobotPIDOutput;
 
 /**
 *
@@ -23,7 +26,8 @@ import org.usfirst.frc9000.FRC2015Java.RobotMap;
 public class  Turn90Degrees extends Command {
 
 	double turn = -90;
-   
+	MotionControlPIDController mcPID;
+    MotionControlHelper motionControl   ;
    public Turn90Degrees() {
        // Use requires() here to declare subsystem dependencies
        // eg. requires(chassis);
@@ -38,6 +42,20 @@ public class  Turn90Degrees extends Command {
    // Called just before this Command runs the first time
    protected void initialize() {
    	RobotMap.driveGyro.reset();
+   	
+    double distance = -90; //degrees
+    double ramp = 30; //degrees
+    double speed = -40; //degrees/sec
+    double start = 0; //degrees
+    motionControl = new MotionControlHelper(distance, ramp, speed, start);
+    
+    final double Kp = 0.3;
+    final double Ki = 0.0;
+    final double Kd = 0.0;
+    
+    MotionControlPIDController mcPID = new MotionControlPIDController(Kp,Ki,Kd,
+    		RobotMap.driveGyro, new rotateRobotPIDOutput(), motionControl );
+    mcPID.enable();
    }
 
    // Called repeatedly when this Command is scheduled to run
@@ -45,7 +63,18 @@ public class  Turn90Degrees extends Command {
 //   	double rotateValue = -.6;
 //   	double moveValue = 0;
 //   	RobotMap.driveRobotDrive.arcadeDrive(moveValue, rotateValue);
-   	RobotMap.driveRobotDrive.tankDrive(-0.6, 0.6);
+//	double motorspeed = -0.6;   
+//   	RobotMap.driveRobotDrive.tankDrive(motorspeed,-motorspeed);
+   	
+   	double currentAngle= RobotMap.driveGyro.getAngle();
+    double targetSpeed = motionControl.getTargetSpeed(currentAngle);   	
+    SmartDashboard.putNumber("Gyro Rate",RobotMap.driveGyro.getRate());
+    SmartDashboard.putNumber("Gryro Target Rate",targetSpeed);
+    SmartDashboard.putNumber("Time",this.timeSinceInitialized());
+    System.out.println("Time="+this.timeSinceInitialized()
+                      +" encoderDist="+RobotMap.driveLeftWheelsEncoder.getDistance()
+                      +" Left Target Rate="+targetSpeed);
+
    	
    }  
 
@@ -64,10 +93,12 @@ public class  Turn90Degrees extends Command {
 
    // Called once after isFinished returns true
    protected void end() {
+	   mcPID.disable();
    }
 
    // Called when another command which requires one or more of the same
    // subsystems is scheduled to run
    protected void interrupted() {
+	   mcPID.disable();
    }
 }
