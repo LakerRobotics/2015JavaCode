@@ -13,8 +13,13 @@ public class rotateRobotPIDOutput implements PIDOutput {
 
 	@Override
 	public void pidWrite(double output) {
-	   	RobotMap.driveRobotDrive.tankDrive(-output,output);
-	    SmartDashboard.putNumber("Motor Output",output);
+		//Dec29RGT   	RobotMap.driveRobotDrive.tankDrive(-output,output);
+		//Dec30RGT RobotMap.driveRobotDrive.tankDrive(output,-output);
+		//Dec30RGT   	RobotMap.driveRobotDrive.tankDrive(-output,output);
+		//Dec30RGT	 RobotMap.driveRobotDrive.tankDrive(output,-output);
+		//Dec30RGT RobotMap.driveRobotDrive.tankDrive(-output,output);
+		RobotMap.driveRobotDrive.tankDrive(output,-output);
+	    SmartDashboard.putNumber("Motor Output",output); 
 	}
 
 }

@@ -69,6 +69,7 @@ public class  Turn90Degrees extends Command {
    	
    	double currentAngle= RobotMap.driveGyro.getAngle();
     double targetSpeed = motionControl.getTargetSpeed(currentAngle);   	
+    SmartDashboard.putNumber("angle",currentAngle);
     SmartDashboard.putNumber("Gyro Rate",RobotMap.driveGyro.getRate());
     SmartDashboard.putNumber("Gryro Target Rate",targetSpeed);
     SmartDashboard.putNumber("Time",this.timeSinceInitialized());
@@ -81,7 +82,7 @@ public class  Turn90Degrees extends Command {
 
    // Make this return true when this Command no longer needs to run execute()
    protected boolean isFinished() {
-       SmartDashboard.putNumber("angle", RobotMap.driveGyro.getAngle());
+       //SmartDashboard.putNumber("angle", RobotMap.driveGyro.getAngle());
 
    	if(RobotMap.driveGyro.getAngle() < turn) {
    		return true;
@@ -94,12 +95,12 @@ public class  Turn90Degrees extends Command {
 
    // Called once after isFinished returns true
    protected void end() {
-	   mcPID.disable();
+	 //Dec29RGT mcPID.disable();
    }
 
    // Called when another command which requires one or more of the same
    // subsystems is scheduled to run
    protected void interrupted() {
-	   mcPID.disable();
+	   //Dec29RGT mcPID.disable();
    }
 }
