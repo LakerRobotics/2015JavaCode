@@ -1,0 +1,73 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Left Target Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="197" y="317"/>
+	</widget>
+	<widget field="Gyro Target Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="621" y="7"/>
+	</widget>
+	<widget field="targetSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="613" y="246"/>
+	</widget>
+	<widget field="Left Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="198" y="13"/>
+	</widget>
+	<widget field="Left" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="610" y="13"/>
+	</widget>
+	<widget field="gapDistanceToUse" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1013" y="12"/>
+	</widget>
+	<widget field="ElevatorToHeight" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="335"/>
+	</widget>
+	<widget field="GyroTest" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="301"/>
+	</widget>
+	<widget field="Motor Output" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="1020" y="337"/>
+	</widget>
+	<widget field="Gryro Target Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="194" y="346"/>
+	</widget>
+	<widget field="Gyro Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="1057" y="76"/>
+	</widget>
+	<widget field="angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="191" y="16"/>
+	</widget>
+	<widget field="rotateRobotPIDOutput" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="259"/>
+	</widget>
+	<widget field="Time" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="611" y="554"/>
+		<height>62</height>
+	</widget>
+	<widget field="Right" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="280"/>
+	</widget>
+	<widget field="ClawSqueeze" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="204"/>
+	</widget>
+	<widget field="Autonomous Command" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="170"/>
+	</widget>
+	<widget field="Turn90Degrees" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="136"/>
+	</widget>
+	<widget field="ClawOpen" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="102"/>
+	</widget>
+	<widget field="DriveForward" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="68"/>
+	</widget>
+	<widget field="DriveSquareTest" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="34"/>
+	</widget>
+	<widget field="Turn360" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="0"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>

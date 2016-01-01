@@ -52,7 +52,7 @@ public class  DriveForward extends Command {
     double speed = 7; //in/sec
     double ramp = 1; //inches
     double start = 0; //inches
-    motionControlHelper = new MotionControlHelper(distance, ramp, speed, start);
+    //motionControlHelper = new MotionControlHelper(distance, ramp, speed, start);
     
     //These values will need to be tuned for your robot.
     final double Kp = 0.3;

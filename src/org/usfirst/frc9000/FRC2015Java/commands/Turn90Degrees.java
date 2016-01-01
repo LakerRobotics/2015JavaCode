@@ -11,6 +11,8 @@
 
 package org.usfirst.frc9000.FRC2015Java.commands;
 
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -25,9 +27,23 @@ import org.usfirst.frc9000.FRC2015Java.rotateRobotPIDOutput;
 */
 public class  Turn90Degrees extends Command {
 
-	double turn = -90;
-	MotionControlPIDController mcPID;
-    MotionControlHelper motionControl   ;
+	double turn = -360;
+	double targetTolerance = 10 ; //degrees
+
+    double distance = turn; //degrees
+    double ramp = 20; //degrees
+    double speed = -35; //degrees/sec
+    double start = 0; //degrees
+    MotionControlHelper motionControl = new MotionControlHelper(distance, ramp, speed, start,RobotMap.driveGyro,new rotateRobotPIDOutput());
+    
+    final double Kp = 0.005;
+    final double Ki = 0.001;
+    final double Kd = 0.0;
+    
+	MotionControlPIDController mcPID = new MotionControlPIDController(Kp,Ki,Kd,
+    		motionControl );
+
+    
    public Turn90Degrees() {
        // Use requires() here to declare subsystem dependencies
        // eg. requires(chassis);
@@ -43,19 +59,9 @@ public class  Turn90Degrees extends Command {
    protected void initialize() {
    	RobotMap.driveGyro.reset();
    	
-    double distance = -180; //degrees
-    double ramp = 30; //degrees
-    double speed = -20; //degrees/sec
-    double start = 0; //degrees
-    motionControl = new MotionControlHelper(distance, ramp, speed, start);
-    
-    final double Kp = 5.0;
-    final double Ki = 0.0;
-    final double Kd = 0.0;
-    
-    MotionControlPIDController mcPID = new MotionControlPIDController(Kp,Ki,Kd,
-    		RobotMap.driveGyro, new rotateRobotPIDOutput(), motionControl );
-    mcPID.setOutputRange(-.60, .60);
+    mcPID.setAbsoluteTolerance(targetTolerance);
+//    mcPID.free();
+    mcPID.setOutputRange(-.80, .80);
     mcPID.enable();
    }
 
@@ -73,9 +79,11 @@ public class  Turn90Degrees extends Command {
     SmartDashboard.putNumber("Gyro Rate",RobotMap.driveGyro.getRate());
     SmartDashboard.putNumber("Gryro Target Rate",targetSpeed);
     SmartDashboard.putNumber("Time",this.timeSinceInitialized());
-    System.out.println("Time="+this.timeSinceInitialized()
-                      +" encoderDist="+RobotMap.driveLeftWheelsEncoder.getDistance()
-                      +" Left Target Rate="+targetSpeed);
+//	SmartDashboard.putNumber("PID Error", mcPID.getError());
+   	
+ //   System.out.println("Time="+this.timeSinceInitialized()
+ //                     +" encoderDist="+RobotMap.driveLeftWheelsEncoder.getDistance()
+ //                     +" Left Target Rate="+targetSpeed);
 
    	
    }  
@@ -84,7 +92,12 @@ public class  Turn90Degrees extends Command {
    protected boolean isFinished() {
        //SmartDashboard.putNumber("angle", RobotMap.driveGyro.getAngle());
 
-   	if(RobotMap.driveGyro.getAngle() < turn) {
+   	//if(Math.abs(RobotMap.driveGyro.getAngle() - turn)<targetTolgerance) {
+   	if(Math.abs(RobotMap.driveGyro.getAngle()) > Math.abs(turn)) {
+//   		mcPID.disable();
+//   		mcPID.getError()
+   		System.out.println("isFinished true");  
+   	  	RobotMap.driveRobotDrive.tankDrive(0,0);
    		return true;
    	}
    	else{
@@ -95,12 +108,14 @@ public class  Turn90Degrees extends Command {
 
    // Called once after isFinished returns true
    protected void end() {
+  	RobotMap.driveRobotDrive.tankDrive(0,0);
 	 //Dec29RGT mcPID.disable();
    }
 
    // Called when another command which requires one or more of the same
    // subsystems is scheduled to run
    protected void interrupted() {
+	  	RobotMap.driveRobotDrive.tankDrive(0,0);
 	   //Dec29RGT mcPID.disable();
    }
 }
