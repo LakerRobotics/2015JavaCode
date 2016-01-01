@@ -32,7 +32,7 @@ public class  Turn90Degrees extends Command {
 
     double distance = turn; //degrees
     double ramp = 20; //degrees
-    double maxspeed = 150; //degrees/sec
+    double maxspeed = 100; //degrees/sec
     double start = 0; //degrees
     MotionControlHelper motionControl = new MotionControlHelper(distance, ramp, maxspeed, start,RobotMap.driveGyro,new rotateRobotPIDOutput());
     
@@ -94,7 +94,7 @@ public class  Turn90Degrees extends Command {
 
    	//if(Math.abs(RobotMap.driveGyro.getAngle() - turn)<targetTolgerance) {
    	if(Math.abs(RobotMap.driveGyro.getAngle()) > Math.abs(turn)) {
-//   		mcPID.disable();
+   		mcPID.disable();
 //   		mcPID.getError()
    		System.out.println("isFinished true");  
    	  	RobotMap.driveRobotDrive.tankDrive(0,0);
