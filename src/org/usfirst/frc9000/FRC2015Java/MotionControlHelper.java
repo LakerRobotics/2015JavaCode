@@ -80,7 +80,7 @@ public class MotionControlHelper {
        double targetSpeed = 0.0d;       
        
        // get the motors going in the right direction
-       double gapEnd = currentMeasuredDistance-m_targetDistance;
+       double gapEnd = m_targetDistance-currentMeasuredDistance;
        targetSpeed = (gapEnd/Math.abs(gapEnd)) * m_runningSpeed; // This just applied +1 or -1 to get the sign right
        
        // Calculate the reduction to the speed if at the start

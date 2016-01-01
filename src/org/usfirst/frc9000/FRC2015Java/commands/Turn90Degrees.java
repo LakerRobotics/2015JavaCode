@@ -27,17 +27,17 @@ import org.usfirst.frc9000.FRC2015Java.rotateRobotPIDOutput;
 */
 public class  Turn90Degrees extends Command {
 
-	double turn = -360;
+	double turn = 90;
 	double targetTolerance = 10 ; //degrees
 
     double distance = turn; //degrees
     double ramp = 20; //degrees
-    double speed = -35; //degrees/sec
+    double maxspeed = 150; //degrees/sec
     double start = 0; //degrees
-    MotionControlHelper motionControl = new MotionControlHelper(distance, ramp, speed, start,RobotMap.driveGyro,new rotateRobotPIDOutput());
+    MotionControlHelper motionControl = new MotionControlHelper(distance, ramp, maxspeed, start,RobotMap.driveGyro,new rotateRobotPIDOutput());
     
     final double Kp = 0.005;
-    final double Ki = 0.001;
+    final double Ki = 0.0005;
     final double Kd = 0.0;
     
 	MotionControlPIDController mcPID = new MotionControlPIDController(Kp,Ki,Kd,
@@ -61,7 +61,7 @@ public class  Turn90Degrees extends Command {
    	
     mcPID.setAbsoluteTolerance(targetTolerance);
 //    mcPID.free();
-    mcPID.setOutputRange(-.80, .80);
+    mcPID.setOutputRange(-1.0, 1.0);
     mcPID.enable();
    }
 
