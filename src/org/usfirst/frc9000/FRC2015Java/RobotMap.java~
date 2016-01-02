@@ -46,7 +46,7 @@ public class RobotMap {
         driveGyro = new Gyro(0);
         LiveWindow.addSensor("Drive", "Gyro", driveGyro);
         driveGyro.setSensitivity(0.0068);
-        driveRightWheelsEncoder = new Encoder(0, 1, false, EncodingType.k4X);
+        driveRightWheelsEncoder = new Encoder(0, 1, true, EncodingType.k4X);
         LiveWindow.addSensor("Drive", "RightWheelsEncoder", driveRightWheelsEncoder);
         driveRightWheelsEncoder.setDistancePerPulse(1.0);
         driveRightWheelsEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
@@ -67,7 +67,7 @@ public class RobotMap {
         driveRobotSpeed = new Talon(4);
         LiveWindow.addActuator("Drive", "RobotSpeed", (Talon) driveRobotSpeed);
         
-        driveLeftWheelsEncoder = new Encoder(2, 3, true, EncodingType.k4X);
+        driveLeftWheelsEncoder = new Encoder(2, 3, false, EncodingType.k4X);
         LiveWindow.addSensor("Drive", "LeftWheelsEncoder", driveLeftWheelsEncoder);
         driveLeftWheelsEncoder.setDistancePerPulse(1.0);
         driveLeftWheelsEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);

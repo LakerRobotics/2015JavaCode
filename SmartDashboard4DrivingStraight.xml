@@ -1,5 +1,11 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="DriveOutAndBack" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="463"/>
+	</widget>
+	<widget field="Turn" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="429"/>
+	</widget>
 	<widget field="Gryro Target Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="194" y="346"/>
 	</widget>
