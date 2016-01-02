@@ -93,7 +93,7 @@ public class  Turn90Degrees extends Command {
        //SmartDashboard.putNumber("angle", RobotMap.driveGyro.getAngle());
 
    	//if(Math.abs(RobotMap.driveGyro.getAngle() - turn)<targetTolgerance) {
-   	if(Math.abs(RobotMap.driveGyro.getAngle()) > Math.abs(turn)) {
+   	if(Math.abs(RobotMap.driveGyro.getAngle()) > Math.abs(turn)) { //TODO make it within tolerance
    		mcPID.disable();
 //   		mcPID.getError()
    		System.out.println("isFinished true");  
@@ -108,14 +108,16 @@ public class  Turn90Degrees extends Command {
 
    // Called once after isFinished returns true
    protected void end() {
-  	RobotMap.driveRobotDrive.tankDrive(0,0);
+//  	RobotMap.driveRobotDrive.tankDrive(0,0);
+		mcPID.disable();
 	 //Dec29RGT mcPID.disable();
    }
 
    // Called when another command which requires one or more of the same
    // subsystems is scheduled to run
    protected void interrupted() {
-	  	RobotMap.driveRobotDrive.tankDrive(0,0);
+  		mcPID.disable();
+//	  	RobotMap.driveRobotDrive.tankDrive(0,0);
 	   //Dec29RGT mcPID.disable();
    }
 }

@@ -93,7 +93,7 @@ public class  Turn90Degrees extends Command {
        //SmartDashboard.putNumber("angle", RobotMap.driveGyro.getAngle());
 
    	//if(Math.abs(RobotMap.driveGyro.getAngle() - turn)<targetTolgerance) {
-   	if(Math.abs(RobotMap.driveGyro.getAngle()) > Math.abs(turn)) {
+   	if(Math.abs(RobotMap.driveGyro.getAngle()) > Math.abs(turn)) { //TODO make it within tolerance
    		mcPID.disable();
 //   		mcPID.getError()
    		System.out.println("isFinished true");  
