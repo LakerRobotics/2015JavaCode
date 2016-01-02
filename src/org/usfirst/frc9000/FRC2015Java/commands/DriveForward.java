@@ -67,8 +67,8 @@ public class  DriveForward extends Command {
    	RobotMap.driveGyro.reset();
     RobotMap.driveLeftWheelsEncoder.reset();
     RobotMap.driveRightWheelsEncoder.reset();
-    double maxspeed = 28; //in/sec
-    double ramp = 6; //inches
+    double maxspeed = 200; //in/sec
+    double ramp = 24; //inches
     double start = 0; //inches
     RobotMap.driveLeftWheelsEncoder.setPIDSourceParameter(PIDSource.PIDSourceParameter.kRate);
 
@@ -82,7 +82,7 @@ public class  DriveForward extends Command {
 
 	mcPID = new MotionControlPIDController(Kp,Ki,Kd, motionControl );
     mcPID.setAbsoluteTolerance(targetTolerance);
-    mcPID.setOutputRange(-0.6, 0.6);
+    mcPID.setOutputRange(-1, 1);
     
    }
 

@@ -30,8 +30,8 @@ public class  Turn90Degrees extends Command {
 	double turn = 90;//default in degrees
 	double targetTolerance = 10 ; //degrees
 
-    double     ramp =  20; //degrees
-    double maxspeed = 100; //degrees/sec
+    double     ramp =  45; //degrees
+    double maxspeed = 150; //degrees/sec
     double    start =   0; //degrees
     MotionControlHelper motionControl; 
     

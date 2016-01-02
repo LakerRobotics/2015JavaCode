@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RobotDriveStraightPIDOutput implements PIDOutput {
 
-	double Kp = 0.05;// was 0.05 whith a delay of 0.004
+	double Kp = 0.025;// was 0.05 whith a delay of 0.004
 
 	public RobotDriveStraightPIDOutput() {
 //	    SmartDashboard.putString("rotateRobotPIDOutput", "constructor called");
