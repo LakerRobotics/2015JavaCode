@@ -1,5 +1,0 @@
-# Project specific information
-package=org.usfirst.frc9000.FRC2015Java
-robot.class=${package}.Robot
-simulation.world.file=/usr/share/frcsim/worlds/GearsBotDemo.world
-
