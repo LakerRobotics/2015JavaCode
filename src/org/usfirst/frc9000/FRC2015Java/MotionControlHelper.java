@@ -3,10 +3,11 @@ package org.usfirst.frc9000.FRC2015Java;
 import java.lang.reflect.Method;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.GyroBase;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -133,23 +134,23 @@ public class MotionControlHelper {
 //				System.out.println ("Method="+methods[i].getName());
 //			}                                                    
 			//TODO need to parameterTypes to the getMethod Call;
-			methodSetSourceParm = m_source.getClass().getMethod("setPIDSourceParameter");
+			methodSetSourceParm = m_source.getClass().getMethod("setPIDSourceType");
 			//                                        new Gyro().setPIDSourceParameter(pidSource);
 		}
 		catch (SecurityException e) {
-	      throw new Exception("failure in trying got find setPIDSourceParameter() method on the PIDSource Object provided, maybe if exist is is private, but needs to be publice for MotionCotrollerPIDController requires", e);
+	      throw new Exception("failure in trying got find setsetPIDSourceType() method on the PIDSource Object provided, maybe if exist is is private, but needs to be publice for MotionCotrollerPIDController requires", e);
 		} 
 		catch (NoSuchMethodException e) {
-			throw new Exception("failure in trying got find setPIDSourceParameter() method on the PIDSource Object provided, apparently one does not exist, as MotionCotrollerPIDController requires", e);
+			throw new Exception("failure in trying got find setPIDSourceType() method on the PIDSource Object provided, apparently one does not exist, as MotionCotrollerPIDController requires", e);
 		}
 		
 		// do the real work, set the PIDSource to return rate
 		try {
-			methodSetSourceParm.invoke(m_source, PIDSource.PIDSourceParameter.kRate);
+			methodSetSourceParm.invoke(m_source, PIDSourceType.kRate);
 			return;
 		} 
 		catch (IllegalArgumentException e) {
-			throw new Exception("failure in trying got run setPIDSourceParameter() method on the PIDSource Object provided", e);
+			throw new Exception("failure in trying got run setPIDSourceType() method on the PIDSource Object provided", e);
 		} 
 		catch (IllegalAccessException e) {
 			throw new Exception("failure in trying got run setPIDSourceParameter() method on the PIDSource Object provided", e);
@@ -173,8 +174,8 @@ public class MotionControlHelper {
     }
 
 	public double getMeasurment() throws Exception{
-		if (m_source instanceof Gyro){
-			Gyro gyro = (Gyro) m_source;
+		if (m_source instanceof GyroBase){
+			GyroBase gyro = (GyroBase) m_source;
 			return gyro.getAngle();
 		}
 		else if (m_source instanceof Encoder){
@@ -184,7 +185,7 @@ public class MotionControlHelper {
 		else{
 			//create a new object that hold a method and see if the mm_source happens to have a method call getRate
 			// Gyro and Encoder will have a method called getRate (otherwise we can just throw an exception because 
-			// the developer didn't provide the right kind of mm_source (mainly a Gyro or Encodeer) for the 
+			// the developer didn't provide the right kind of mm_source (mainly a Gyro or Encoder) for the 
 			// motionControlPIDController to work, so we should blow up 
 			try{
 				java.lang.reflect.Method methodGetMeas;
@@ -246,6 +247,18 @@ public class MotionControlHelper {
 			// call the real PIDSource
         	return m_source.pidGet();
         }
+
+		@Override
+		public void setPIDSourceType(PIDSourceType pidSource) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public PIDSourceType getPIDSourceType() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
     }
     

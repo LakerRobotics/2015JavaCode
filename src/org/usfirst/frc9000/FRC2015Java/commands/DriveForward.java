@@ -13,6 +13,7 @@ package org.usfirst.frc9000.FRC2015Java.commands;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -70,7 +71,7 @@ public class  DriveForward extends Command {
     double maxspeed = 200; //in/sec
     double ramp = 24; //inches
     double start = 0; //inches
-    RobotMap.driveLeftWheelsEncoder.setPIDSourceParameter(PIDSource.PIDSourceParameter.kRate);
+    RobotMap.driveLeftWheelsEncoder.setPIDSourceType(PIDSourceType.kRate);
 
     MotionControlHelper motionControl = new MotionControlHelper(distance, ramp, maxspeed, start,
     		                                    RobotMap.driveLeftWheelsEncoder,new RobotDriveStraightPIDOutput());

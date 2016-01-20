@@ -14,7 +14,7 @@ package org.usfirst.frc9000.FRC2015Java.subsystems;
 import org.usfirst.frc9000.FRC2015Java.RobotMap;
 import org.usfirst.frc9000.FRC2015Java.commands.*;
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType; import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType; 
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
